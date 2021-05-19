@@ -6,6 +6,19 @@ const map = (a, f) => {
     return r
 }
 
-const reduce = (a, s) => {
-  
+const reduce = (array, callback, startingValue) => {
+  const isFalse = (currentValue) => currentValue == null
+
+  if (array.every(isFalse)) {
+    return true
+  }
+
+  let total = false
+  if (startingValue) {
+  total += startingValue
+  }
+  array.forEach(thing => {
+    total = callback(total, thing)
+  })
+  return total
 }
